@@ -92,3 +92,8 @@ Thread VIEWER    → (opzionale live) legge deque e mostra OpenCV
 Tutti condividono la `deque` protetta da un `threading.Lock` durante la copia per il flush.
 
 
+DOMANDE:
+Event selection se vuole che facciamo le simulazioni prima e tastino magico per selezionare quella da visualizzare
+
+
+
