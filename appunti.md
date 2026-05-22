@@ -70,6 +70,17 @@ OpenCV + pygame:
   - in alto a dx: icona per cambiare camera
 ```
 
+Controlli:
+
+Input	Azione
+Spazio	pause / play
+← / ,	frame precedente
+→ / .	frame successivo
+Click timeline	seek al frame cliccato
+Click [front] / [rear] / [right]	cambia camera
+Q / ESC	chiudi viewer
+
+
 **Schema complessivo dei thread**
 ```
 Thread MAIN      → world.tick() + costruzione EventRecord + append deque
