@@ -92,8 +92,4 @@ Thread VIEWER    → (opzionale live) legge deque e mostra OpenCV
 Tutti condividono la `deque` protetta da un `threading.Lock` durante la copia per il flush.
 
 
-DOMANDE:
-Event selection se vuole che facciamo le simulazioni prima e tastino magico per selezionare quella da visualizzare
-
-
-
+PER RELAZIONE: in CARLA sync mode le camere non producono il primo frame al primo world.tick() dopo lo spawn — necessitano di 1-2 tick di "riscaldamento". Poiché nel setup delle camere non viene chiamato nessun world.tick(), all'inizio del loop i primi 1-2 record hanno camera_frames={}, quindi il flusher non salva nessun JPEG per quei frame.
