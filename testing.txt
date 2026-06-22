@@ -1,0 +1,14 @@
+Tick Stability: misura i delta tra valori successivi di timestamp_sim (mean, std, max jitter). Snippet: dts = np.diff([r["timestamp_sim"] for r in records]); np.mean(dts), np.std(dts), np.max(np.abs(dts-mean))
+Camera Sync Error: per ogni frame confronta il timestamp_sim di riferimento con i record delle camere; riportare max/95%-tile degli offset per camera.
+Frame Loss / Completeness: conta JPEG salvati per ruolo vs. attesi (expected = retention_seconds * fps), riporta missing/frame loss % e liste di frame mancanti.
+Flusher Latency: misura tempo tra trigger e completamento flush (s): t0=time.perf_counter(); trigger(); wait_for_flush(); latency=time.perf_counter()-t0 — riporta percentili e outlier.
+Flush Throughput / IO: tempo totale di scrittura, files/s, bytes/s; dimensione media JPEG e compressione media.
+Disk Footprint per Session: du della cartella sessione, numero di file e bytes totali; plot dimensione vs durata.
+MQTT Latency & Loss: invia messaggi timestampped e misura round-trip; calcola latency mean/std e perdita percentuale sotto carico.
+LLM (explain_warnings) Latency & Variability: tempo di risposta e lunghezza output; se possibile aggiungi una valutazione qualitativa (human score) su 10.
+Resource Usage (CPU / RAM / GPU): campiona psutil durante run (mean, peak), correlare con numero NPC o carico scena.
+Event Detection Accuracy: con scenari labeled (ground-truth) calcola TP/FP/FN → precision, recall, F1 per near-miss e collision.
+Determinism / Reproducibility: esegui ripetute con stesso seed; confronta sequenze timestamp_sim, frame_id, e events.jsonl per uguaglianza bitwise o differenze minime.
+Stress Tests / Scalability: scala NPC count / traffic density e misura: tick stability, frame loss, CPU, flush latency; riporta grafico capacità vs degrado delle metriche.
+Jitter & Outliers Analysis: istogrammi e boxplot per latencies/jitters, con annotazione di cause sospette (GC, IO spike).
+End-to-end Evidence Check: per alcuni eventi (collision/near-miss) verifica che esista: JPEGs, entry in events.jsonl, metadata.json coerente e index.json mapping corretto.
